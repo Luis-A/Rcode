@@ -20,9 +20,9 @@ rankhospital <- function(state, outcome, num = "best") {
   sdata[,col] <- as.numeric(sdata[,col])
   sinNA <- sdata[!is.na(sdata[,col]),]
   
-  if (num =="best") pos <- 1
+  if (num == "best") pos <- 1
   else if (num == "worst") pos <- nrow(sinNA)
-  else if (is.numeric(num) & num <= nrow(sinNA)) pos <- nrow(sinNA)
+  else if (is.numeric(num) & num <= nrow(sinNA) & num > 0) pos <- nrow(sinNA)
   else  
     stop('Error in rankhospital("' , state, '", "',outcome,'", "',num,'") : invalid num')
   
