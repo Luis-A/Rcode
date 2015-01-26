@@ -3,7 +3,7 @@ best <- function(state, outcome) {
   # reading outcome data
   data <- read.csv("outcome-of-care-measures.csv", 
                    colClasses ="character")
-                   #stringsAsFactors=FALSE, na.strings=c("Not available"))
+  
   # checking state is correct
   if (!state %in% data[,7]) 
      stop('Error in best("',state,'", ', '"',outcome,'") : invalid state\n')
