@@ -8,7 +8,7 @@ best <- function(state, outcome) {
   if (!state %in% data[,7]) 
      stop('Error in best("',state,'", ', '"',outcome,'") : invalid state\n')
 
-  # checking outcome is correct
+  # checking outcome is correct  
   if (outcome == "heart attack") col <- 11
   else if (outcome =="heart failure") col <- 17
   else if (outcome == "pneumonia") col <- 23
@@ -17,7 +17,8 @@ best <- function(state, outcome) {
   
   # draw the hospital data of hospitals from param state
   sdata <- data[data[,7]==state,]
+  sdata[,col] <- as.numeric(sdata[,col])
   
-  sort(sdata[which( as.numeric(sdata[,col]) %in% min(as.numeric(sdata[,col]), na.rm=TRUE)),2])[1]
+  sort(sdata[which( sdata[,col] %in% min(sdata[,col], na.rm=TRUE)),2])[1]
   
 }
