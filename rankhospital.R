@@ -22,11 +22,14 @@ rankhospital <- function(state, outcome, num = "best") {
   
   if (num == "best") pos <- 1
   else if (num == "worst") pos <- nrow(sinNA)
-  else if (is.numeric(num) & num <= nrow(sinNA) & num > 0) pos <- nrow(sinNA)
+  else if (is.numeric(num) & num <= nrow(sinNA) & num > 0) pos <- num
   else  
-    stop('Error in rankhospital("' , state, '", "',outcome,'", "',num,'") : invalid num')
+    return(NA)
   
   # everything is going to work fine
-  sort(sinNA[which( sinNA[,col] %in% min(sinNA[,col], na.rm=TRUE)),2])[pos]
+  # return the element [pos,2] after ordering by column col and
+  #   breaking the ties by column 2
+  
+  sinNA[order(sinNA[,col], sinNA[,2]),][pos,2]
   
 }
